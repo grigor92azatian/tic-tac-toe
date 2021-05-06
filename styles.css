@@ -2,4 +2,59 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-size: 50px;
+}
+.gameDisplay{
+    background-color: lightblue;
+    height: 50px;
+    width: 300px;
+}
+
+.gameBoard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightcoral;
+    height: 700px;
+    width: 1200px;
+}
+
+.playerInfo{
+    background-color: lightgray;
+    height: 600px;
+    width: 300px;
+}
+
+.gameGrid{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: lightgreen;
+    height: 600px;
+    width: 600px;
+}
+
+.gameTile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightsalmon;
+    border: 4px solid black;
+    height: 200px;
+    width: 200px;
+}
+
+.gamePlay{
+    font-size: 200px;
 }
