@@ -1,0 +1,2 @@
+I will be making a simple tic tac toe web app game. The initial iteration will facilitate a game between two players on the same browser.
+REVISIT to create an AI against which the player can choose to play.
