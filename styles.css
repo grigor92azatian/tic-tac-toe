@@ -61,5 +61,16 @@ body{
 }
 
 .formButton{
+    /* border: 2px solid green; */
     padding: 10px;
+}
+
+@media (max-width:800px){
+    .formRow2{
+        flex-direction: column;
+        align-items: center;
+    }
+    .formButton{
+        margin-top: 30px;
+    }
 }
