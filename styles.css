@@ -23,7 +23,7 @@ body{
     height: 7%;
 }
 
-.gameBoard{
+.gameDisplay{
     /* border: 2px solid green; */
     height: 93%;
     display: flex;
