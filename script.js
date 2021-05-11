@@ -33,6 +33,7 @@ let gameBoardModule = (function(){
         let gridContainer = document.createElement("div");
         let gameBoardArray = [];
         let gameDisplay = document.querySelector(".gameDisplay");
+        let gameBoardBorder = "4px solid red";
 
     //style container that will store the 3x3 grid
         gridContainer.setAttribute("class", "gameBoard");
@@ -52,18 +53,19 @@ let gameBoardModule = (function(){
                                     "height: 200px;"+
                                     "width: 200px;"+
                                     "box-sizing: border-box;"+
-                                    "margin: 0;";
+                                    "margin: 0;"+
+                                    "font-size: 160px;";
             if(i === 1||i===2||i===4||i===5||i===7||i===8){
-                gridTile.style.borderLeft = "4px solid black";
+                gridTile.style.borderLeft = gameBoardBorder;
             }
             if(i === 0||i===1||i===3||i===4||i===6||i===7){
-                gridTile.style.borderRight = "4px solid black";
+                gridTile.style.borderRight = gameBoardBorder;
             }
             if(i === 3||i===4||i===5||i===6||i===7||i===8){
-                gridTile.style.borderTop = "4px solid black";
+                gridTile.style.borderTop = gameBoardBorder;
             }
             if(i === 0||i===1||i===2||i===3||i===4||i===5){
-                gridTile.style.borderBottom = "4px solid black";
+                gridTile.style.borderBottom = gameBoardBorder;
             }
             gridTile.innerHTML = i;
             gameBoardArray.push(gridTile);
