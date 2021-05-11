@@ -36,20 +36,36 @@ let gameBoardModule = (function(){
 
     //style container that will store the 3x3 grid
         gridContainer.setAttribute("class", "gameBoard");
-        gridContainer.style.cssText = "border: 2px solid green;"+
+        gridContainer.style.cssText = 
                                 "width: 600px;"+
                                 "height: 600px;"+
                                 "display: flex;"+
-                                "flex-wrap: wrap;";
+                                "flex-wrap: wrap;"+
+                                "box-sizing: border-box";
     //create an array of 9 div elements that will be the tiles to the game board
         for (let i=0;i<9;i++){
             let gridTile = document.createElement("div");
             // gridTile.classList.add("boardTile", tileClassName);     //use classList.add to add multiple classes to single element
             gridTile.setAttribute("class", "boardTile");    //set shared class
             gridTile.setAttribute("data-indexNumber", i);   //set unique data attribute
-            gridTile.style.cssText = "border: 1px solid black;"+
+            gridTile.style.cssText = 
                                     "height: 200px;"+
-                                    "width: 200px;";
+                                    "width: 200px;"+
+                                    "box-sizing: border-box;"+
+                                    "margin: 0;";
+            if(i === 1||i===2||i===4||i===5||i===7||i===8){
+                gridTile.style.borderLeft = "4px solid black";
+            }
+            if(i === 0||i===1||i===3||i===4||i===6||i===7){
+                gridTile.style.borderRight = "4px solid black";
+            }
+            if(i === 3||i===4||i===5||i===6||i===7||i===8){
+                gridTile.style.borderTop = "4px solid black";
+            }
+            if(i === 0||i===1||i===2||i===3||i===4||i===5){
+                gridTile.style.borderBottom = "4px solid black";
+            }
+            gridTile.innerHTML = i;
             gameBoardArray.push(gridTile);
         }
     //append the 9 tiles to the grid container and then append grid container to gameDisplay element
