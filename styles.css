@@ -23,7 +23,7 @@ body{
     height: 7%;
 }
 
-.gameDisplay{
+.mainSection{
     /* border: 2px solid green; */
     height: 93%;
     display: flex;
@@ -31,7 +31,7 @@ body{
 }
 .playerSelectionForm{
     /* border: 2px solid green; */
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
