@@ -1,6 +1,5 @@
-//generate second page of tic-tac-toe webapp
 
-let secondPage = (function(){
+let pageLayout = (function(){   //GENERATES BASIC LAYOUT OF PAGE...OTHER MODULES/FUNCTIONS FILL IT IN
     //--------------------VARIABLES----------------------------------
     let htmlBody = document.querySelector("body");
     let divArray = [];
@@ -64,5 +63,17 @@ let secondPage = (function(){
 })();
 
 
-secondPage.appendAll();
+
+let gameDisplay = (function(){
+
+})();
+
+
+let gameBoard = (function(){
+
+})();
+
+
+let playerFactory
+pageLayout.appendAll();
 
