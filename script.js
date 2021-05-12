@@ -1,6 +1,6 @@
 //generate second page of tic-tac-toe webapp
 
-let loadSecondPage = function(){
+let secondPage = (function(){
     //--------------------VARIABLES----------------------------------
     let htmlBody = document.querySelector("body");
     let divArray = [];
@@ -49,15 +49,20 @@ let loadSecondPage = function(){
 
 
     //--------------------------CREATE PAGE LAYOUT BY APPENDING THE DIVS TO EACHOTHER---------------------------------
-    divArray[3].appendChild(divArray[7]);   //append game board to game board section
-    divArray[2].appendChild(divArray[4]);   //append player 1 and 2 info and round display to game info
-    divArray[2].appendChild(divArray[6]);
-    divArray[2].appendChild(divArray[5]);
-    divArray[1].appendChild(divArray[2]);   //append game info to main section
-    divArray[1].appendChild(divArray[3]);   //append game board section to main section
-    htmlBody.appendChild(divArray[0]);      //append title to body
-    htmlBody.appendChild(divArray[1]);      //append main section to body    
-};
-    
+    function appendAll(){
+        divArray[3].appendChild(divArray[7]);   //append game board to game board section
+        divArray[2].appendChild(divArray[4]);   //append player 1 and 2 info and round display to game info
+        divArray[2].appendChild(divArray[6]);
+        divArray[2].appendChild(divArray[5]);
+        divArray[1].appendChild(divArray[2]);   //append game info to main section
+        divArray[1].appendChild(divArray[3]);   //append game board section to main section
+        htmlBody.appendChild(divArray[0]);      //append title to body
+        htmlBody.appendChild(divArray[1]);      //append main section to body           
+    }
+ 
+    return {appendAll};
+})();
 
+
+secondPage.appendAll();
 
