@@ -128,6 +128,47 @@ let gameBoard = (function(){    //making the actual 3x3 grid gameboard
 })();
 
 
-let playerFactory
+let playerFactory = function(name, piece){    //factory function for creating a player object that will contain name, piece (x or o), and score
+    let score = 0;
+
+    return {
+        name,
+        piece,
+        score,
+        incrementScore: function(){
+            this.score++;
+        },
+        createPlayerInfoDiv: function(){
+            let containerDiv = document.createElement("div");
+                containerDiv.setAttribute("class", "playerInfoContainer");
+                containerDiv.style.cssText = "width: 25%; height: 100%; display: flex; flex-direction: column;"+
+                                                "align-items: center; justify-content: space-between;";
+            let playerInfo = [];
+            for(let i=0;i<3;i++){
+                let newDiv = document.createElement("div");
+                    newDiv.setAttribute("class", "playerInfo");
+                    newDiv.style.textAlign = "center";
+                playerInfo.push(newDiv);
+            }
+            playerInfo[0].innerHTML = this.name;
+            playerInfo[1].innerHTML = this.piece;
+            playerInfo[2].innerHTML = this.score;
+
+            playerInfo[0].setAttribute("class", "playerName");
+            playerInfo[1].setAttribute("class", "playerPiece");
+            playerInfo[2].setAttribute("class", "playerScore");
+
+            for(let i=0;i<playerInfo.length; i++){
+                containerDiv.appendChild(playerInfo[i]);
+            }
+            return containerDiv;
+        }
+    };
+};
+
+
+
+
+
 pageLayout.appendAll();
 
