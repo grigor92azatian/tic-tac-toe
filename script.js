@@ -21,33 +21,32 @@ let pageLayout = (function(){   //GENERATES BASIC LAYOUT OF PAGE...OTHER MODULES
     divArray[1].setAttribute("id", "mainSection");
         //divArray[1].innerHTML = "Main Section";
         divArray[1].style.cssText = "display: flex; flex-direction: column; height: 93%; width: 100%;";
-        divArray[1].style.border = "1px solid black;";
-        divArray[1].style.border = "1px solid black";
+        //divArray[1].style.border = "1px solid black;";
 
     divArray[2].setAttribute("id", "gameInfo");
         //divArray[2].innerHTML = "Game Info";
         divArray[2].style.cssText = "display: flex; flex-direction: row; height: 25%;";
-        divArray[2].style.border = "1px solid black";
+        //divArray[2].style.border = "1px solid black";
 
     divArray[3].setAttribute("id", "gameBoardSection");
         //divArray[3].innerHTML = "Game Board Section";
         divArray[3].style.cssText = "display: flex; height: 75%; align-items: center; justify-content: center;";
-        divArray[3].style.border = "1px solid black";
+        //divArray[3].style.border = "1px solid black";
 
     divArray[4].setAttribute("id", "player1Info");
         //divArray[4].innerHTML = "Player 1 Info";
         divArray[4].style.cssText = "width: 25%; height: 100%;";
-        divArray[4].style.border = "1px solid black";
+        //divArray[4].style.border = "1px solid black";
 
     divArray[5].setAttribute("id", "player2Info");
         //divArray[5].innerHTML = "Player 2 Info";
         divArray[5].style.cssText = "width: 25%; height: 100%;";
-        divArray[5].style.border = "1px solid black";
+        //divArray[5].style.border = "1px solid black";
 
     divArray[6].setAttribute("id", "currentRoundDisplay");
         divArray[6].innerHTML = "Current Round Display";
         divArray[6].style.cssText = "width: 50%; height: 100%;";
-        divArray[6].style.border = "1px solid black";
+        //divArray[6].style.border = "1px solid black";
 
     divArray[7].setAttribute("id", "gameBoard");
         //divArray[7].innerHTML = "GameBoard";
@@ -86,7 +85,121 @@ let pageLayout = (function(){   //GENERATES BASIC LAYOUT OF PAGE...OTHER MODULES
     return {createPage, fillTitle, fillCurrentRoundDisplay, fillPlayer1Info, fillPlayer2Info, fillGameBoard};
 })();
 
+let playerSelectionForm = (function(){
+    let selectionForm = document.createElement("form");
+        selectionForm.className = "playerSelectionForm";
 
+    let formTitle = document.createElement("h2");
+        formTitle.className = "formTitle";
+        formTitle.innerHTML = "Choose Your Piece";
+
+    let formNote = document.createElement("h3");
+        formNote.className = "formNote";
+        formNote.innerHTML = "X makes the first move";
+
+    let formRow2 = document.createElement("div");
+        formRow2.className = "formRow2";
+
+    let playerXdiv = document.createElement("div");
+        playerXdiv.className = "playerX";
+
+    let playerXLabel = document.createElement("label");
+        playerXLabel.className = "playerLabel";
+        playerXLabel.setAttribute("for", "player1Name");
+        playerXLabel.innerHTML = "X";
+
+    let playerXInput = document.createElement("input");
+        playerXInput.className = "playerInput";
+        playerXInput.setAttribute("id", "player1Name");
+        playerXInput.setAttribute("name", "player1Name");
+        playerXInput.setAttribute("type", "text");
+        playerXInput.setAttribute("placeholder", "Enter Name");
+
+    let playerOdiv = document.createElement("div");    
+        playerOdiv.className = "playerO";
+
+    let playerOLabel = document.createElement("label");
+        playerOLabel.className = "playerLabel";
+        playerOLabel.setAttribute("for", "player2Name");
+        playerOLabel.innerHTML = "O";
+
+    let playerOInput = document.createElement("input");
+        playerOInput.className = "playerInput";
+        playerOInput.setAttribute("id", "player2Name");
+        playerOInput.setAttribute("name", "player2Name");
+        playerOInput.setAttribute("type", "text");
+        playerOInput.setAttribute("placeholder", "Enter Name");
+
+    let formButton = document.createElement("button");
+        formButton.className = "formButton";
+        formButton.innerHTML = "Play!";
+        formButton.addEventListener("click", function(){
+            player1 = playerFactory(playerXInput.value, "X");
+            player2 = playerFactory(playerOInput.value, "O");
+
+            pageLayout.fillPlayer1Info(player1.fillInfoContainer());
+            pageLayout.fillPlayer2Info(player2.fillInfoContainer());
+        });
+
+    let styleElement = document.createElement("style");
+        styleElement.innerHTML = 
+        ".playerSelectionForm{"+
+            "/* border: 2px solid green; */"+
+            "height: 75%;"+
+            "display: flex;"+
+            "flex-direction: column;"+
+            "justify-content: space-between;"+
+            "align-items: center;}"+
+
+        ".formNote{"+
+            "font-size: 20px;"+
+            "font-style: italic;"+
+            "font-weight: 100;}"+
+
+        ".playerX, .playerO{"+
+            "/* border: 2px solid green; */"+
+            "display: flex;"+
+            "flex-direction: column;"+
+            "width: 45%;}"+
+        
+        ".formRow2{"+
+            "/* border: 2px solid green; */"+
+            "display: flex;"+
+            "flex-direction: row;"+
+            "justify-content: space-between;}"+
+        
+        ".playerLabel{"+
+            "/* border: 2px solid green; */"+
+            "font-size: 150px;}"+
+        
+        ".playerInput{"+
+            "/* border: 2px solid green; */"+
+            "padding: 5px;}"+
+        
+        ".formButton{"+
+            "/* border: 2px solid green; */"+
+            "padding: 10px;}";
+    
+    let createForm = function(){
+        playerXdiv.appendChild(playerXLabel);
+        playerXdiv.appendChild(playerXInput);
+        playerOdiv.appendChild(playerOLabel);
+        playerOdiv.appendChild(playerOInput);
+        formRow2.appendChild(playerXdiv);
+        formRow2.appendChild(playerOdiv);
+        selectionForm.appendChild(formTitle);
+        selectionForm.appendChild(formNote);
+        selectionForm.appendChild(formRow2);
+        selectionForm.appendChild(formButton);
+        selectionForm.appendChild(styleElement);
+
+        return selectionForm;
+    }
+
+
+    return {createForm};
+
+})();
 
 let gameDisplay = (function(){
 
@@ -201,12 +314,21 @@ let playerFactory = function(name, piece){    //factory function for creating a 
 };
 
 
-let player1 = playerFactory("Greg", "X");
-let player2 = playerFactory("John", "O");
-
 
 pageLayout.createPage();
 pageLayout.fillTitle("Tic Tac Toe");
-pageLayout.fillGameBoard(gameBoard.createGrid());
-pageLayout.fillPlayer1Info(player1.fillInfoContainer());
-pageLayout.fillPlayer2Info(player2.fillInfoContainer());
+pageLayout.fillGameBoard(playerSelectionForm.createForm());
+
+let player1;
+let player2;
+
+
+
+
+// pageLayout.fillGameBoard(gameBoard.createGrid());
+
+
+
+
+
+
