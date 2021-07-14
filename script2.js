@@ -88,7 +88,7 @@ let gameBoardModule = function(){
 let displayPlayerNames = function(){
     let playerNameArea = document.querySelectorAll(".playerNameArea");  //gives us an array with 2 elements
     let playerNameInput = document.querySelectorAll("#name");
-console.log(playerNameInput);
+
     playerNameArea[0].innerHTML = "";
     playerNameArea[0].innerHTML = playerNameInput[0].value;
 
@@ -96,9 +96,26 @@ console.log(playerNameInput);
     playerNameArea[1].innerHTML = playerNameInput[1].value;
 }
 
+let addScoreDisplayArea = function(){       //this will add a seperate div that will store the players score as the game proceeds
+    let playerSection = document.querySelectorAll(".player");   //array with 2 elements, [0] is player1 section and [1] is player2 section
+    let scoreDivArray = [];
+    for(let i=1;i<3;i++){
+        let scoreDiv = document.createElement("div");               //create score container div
+        scoreDiv.innerHTML = "Score";                               //it will say "SCORE"
+        let scoreDisplay = document.createElement("div");           //create another div that will store the actual score
+        scoreDisplay.setAttribute("class", "player"+i+"score");     //give each one a unique class so that we can adjust them as the game goes one
+scoreDisplay.innerHTML = 6;
+        scoreDiv.appendChild(scoreDisplay);                         //append the score div to the container
+        scoreDivArray.push(scoreDiv);                               //store the two in an array
+    }
+    playerSection[0].appendChild(scoreDivArray[0]);
+    playerSection[1].appendChild(scoreDivArray[1]);                 //append them to their respective containers
+}
+
 let playButton = document.querySelector(".playButton");
 playButton.addEventListener("click", function(){
     gameBoardModule();
-    displayPlayerNames();    
+    displayPlayerNames();
+    addScoreDisplayArea();    
 });
 
