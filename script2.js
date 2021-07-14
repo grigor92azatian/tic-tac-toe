@@ -8,7 +8,19 @@ let gameBoardModule = function(){
     for(let i=0;i<9;i++){                                              
         let tile = document.createElement("div");                                                                           //create new div element
         tile.setAttribute("class", "box"+i);                                                                                //gives each div a unique class name
-        tile.style.cssText = "font-size: 170px; text-align: center; width: 200px; height: 200px; border: 2px solid black;"  //styles each div
+        tile.style.cssText = "font-size: 170px; text-align: center; width: 200px; height: 200px;";                          //styles each div
+        if(i>=3&&i<=8){                                                                                               //give tiles their unique borders
+            tile.style.borderTop = "2px solid black";
+        }
+        if(i<=5){
+            tile.style.borderBottom = "2px solid black";
+        }
+        if(i%3!=0){
+            tile.style.borderLeft = "2px solid black";
+        }
+        if(i==0||i==1||i==3||i==4||i==6||i==7){
+            tile.style.borderRight = "2px solid black";
+        }                
         tile.addEventListener("click", function(){                                                                          //add click event listener to each div
             if(tile.innerHTML === ""){    
                 if(xOrO%2===0){
