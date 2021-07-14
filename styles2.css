@@ -32,6 +32,9 @@ body{
     height: 600px;
     width: 400px;
     border: 2px solid black;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
 }
 .topBanner, .bottomBanner{
     width: 90%;
