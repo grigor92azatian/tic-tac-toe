@@ -24,7 +24,9 @@ body{
     height: 600px;
     width: 600px;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
 }
 .player{
     height: 600px;

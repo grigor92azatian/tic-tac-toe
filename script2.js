@@ -1,6 +1,8 @@
 let gameBoardModule = function(){
     let gameBoardArray = [];                                            //will store our 9 game board tiles
     let gameBoardContainer = document.querySelector(".gameBoard");   //this points to our gameBoard container hardcoded in the html
+        gameBoardContainer.innerHTML = "";
+        gameBoardContainer.style.cssText = "flex-wrap: wrap; justify-content: flex-start; align-items: start;"
     let xOrO = 1;                                                   //alternates X and O on gameboard clicks
     let totalNumOfMoves = 0;                                        //this keeps track of how many moves have been made by both X and O together, once this number hits 5
                                                                     //its time to check if there are any winning combos
@@ -78,5 +80,25 @@ let gameBoardModule = function(){
             console.log(gameBoardArray[2].innerHTML + " wins this round!");
         }
     }
-}();
+};
+
+
+//-----------------------------------------------------------------GAME SETUP (players enter names and click the play button)----------------------------------------------------
+//clicking play button should take user names and update the player sections with their names and score AND pullup the gameBoard
+let displayPlayerNames = function(){
+    let playerNameArea = document.querySelectorAll(".playerNameArea");  //gives us an array with 2 elements
+    let playerNameInput = document.querySelectorAll("#name");
+console.log(playerNameInput);
+    playerNameArea[0].innerHTML = "";
+    playerNameArea[0].innerHTML = playerNameInput[0].value;
+
+    playerNameArea[1].innerHTML = "";
+    playerNameArea[1].innerHTML = playerNameInput[1].value;
+}
+
+let playButton = document.querySelector(".playButton");
+playButton.addEventListener("click", function(){
+    gameBoardModule();
+    displayPlayerNames();    
+});
 

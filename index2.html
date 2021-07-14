@@ -11,23 +11,28 @@
     <div class="mainSection">
         <div class="player">
             <h1>X</h1>
-            <form autocomplete="off">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="Player1">
-            </form>
+            <div class="playerNameArea">
+                <form autocomplete="off">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="Player1">
+                </form>                
+            </div>
         </div>
-        <div class="gameBoard"></div>
+        <div class="gameBoard">
+            <button class="playButton">PLAY!</button>
+        </div>
         <div class="player">
             <h1>O</h1>
-            <form autocomplete="off">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="Player2">
-            </form>
+            <div class="playerNameArea">
+                <form autocomplete="off">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="Player2">
+                </form>                
+            </div>
         </div>        
     </div>
     <div class="bottomBanner">
         <h2>X makes the first move!</h2>
-        <button class="playButton">PLAY!</button>
     </div>
     <script src="script2.js"></script>
 </body>
