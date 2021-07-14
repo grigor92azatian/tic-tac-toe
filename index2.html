@@ -5,7 +5,30 @@
     <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <div class="gameBoard"></div>
+    <div class="topBanner">
+        <h1>Tic-Tac-Toe</h1>
+    </div>
+    <div class="mainSection">
+        <div class="player">
+            <h1>X</h1>
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Player1's Name">
+            </form>
+        </div>
+        <div class="gameBoard"></div>
+        <div class="player">
+            <h1>O</h1>
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Player2's Name">
+            </form>
+        </div>        
+    </div>
+    <div class="bottomBanner">
+        <h2>X makes the first move!</h2>
+        <button class="playButton">PLAY!</button>
+    </div>
     <script src="script2.js"></script>
 </body>
 </html>
