@@ -50,34 +50,42 @@ let gameBoardModule = function(){
         if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[1].innerHTML==="X"&&gameBoardArray[2].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[1].innerHTML==="O"&&gameBoardArray[2].innerHTML==="O")){
             changeToRed(gameBoardArray[0], gameBoardArray[1], gameBoardArray[2]);
             changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
         }
         if((gameBoardArray[3].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X")||(gameBoardArray[3].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O")){
             changeToRed(gameBoardArray[3], gameBoardArray[4], gameBoardArray[5]);
             changeScore(gameBoardArray[3].innerHTML);
+            displayWinnerOfRound(gameBoardArray[3].innerHTML);
         }
         if((gameBoardArray[6].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[6].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
             changeToRed(gameBoardArray[6], gameBoardArray[7], gameBoardArray[8]);
             changeScore(gameBoardArray[6].innerHTML);
+            displayWinnerOfRound(gameBoardArray[6].innerHTML);
         }
         if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[3].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[3].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
             changeToRed(gameBoardArray[0], gameBoardArray[3], gameBoardArray[6]);
             changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
         }
         if((gameBoardArray[1].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X")||(gameBoardArray[1].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O")){
             changeToRed(gameBoardArray[1], gameBoardArray[4], gameBoardArray[7]);
             changeScore(gameBoardArray[1].innerHTML);
+            displayWinnerOfRound(gameBoardArray[1].innerHTML);
         }
         if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
             changeToRed(gameBoardArray[2], gameBoardArray[5], gameBoardArray[8]);
             changeScore(gameBoardArray[2].innerHTML);
+            displayWinnerOfRound(gameBoardArray[2].innerHTML);
         }
         if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
             changeToRed(gameBoardArray[0], gameBoardArray[4], gameBoardArray[8]);
             changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
         }
         if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
             changeToRed(gameBoardArray[2], gameBoardArray[4], gameBoardArray[6]);
             changeScore(gameBoardArray[2].innerHTML);
+            displayWinnerOfRound(gameBoardArray[2].innerHTML);
         }
     }
 };
@@ -91,9 +99,11 @@ let displayPlayerNames = function(){
 
     playerNameArea[0].innerHTML = "";
     playerNameArea[0].innerHTML = playerNameInput[0].value;
+    playerNameArea[0].setAttribute("class", "player1Name");
 
     playerNameArea[1].innerHTML = "";
     playerNameArea[1].innerHTML = playerNameInput[1].value;
+    playerNameArea[1].setAttribute("class", "player2Name");
 }
 
 let addScoreDisplayArea = function(){       //this will add a seperate div that will store the players score as the game proceeds
@@ -130,4 +140,16 @@ let changeScore = function(playerPiece){
     }
     let score = document.querySelector("."+player+"score");
     score.innerHTML = parseInt(score.innerHTML)+1;
+}
+
+let displayWinnerOfRound = function(playerPiece){
+    let bottomDisplay = document.querySelector(".bottomDisplay");
+    let playerName;
+    if(playerPiece==="X"){
+        playerName = document.querySelector(".player1Name").innerHTML;
+    }else{
+        playerName = document.querySelector(".player2Name").innerHTML;
+    }
+    //bottomDisplay.innerHTML = "";
+    bottomDisplay.innerHTML = playerName + " wins this round!";
 }
