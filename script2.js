@@ -104,7 +104,7 @@ let addScoreDisplayArea = function(){       //this will add a seperate div that 
         scoreDiv.innerHTML = "Score";                               //it will say "SCORE"
         let scoreDisplay = document.createElement("div");           //create another div that will store the actual score
         scoreDisplay.setAttribute("class", "player"+i+"score");     //give each one a unique class so that we can adjust them as the game goes one
-scoreDisplay.innerHTML = 6;
+        scoreDisplay.innerHTML = 0;
         scoreDiv.appendChild(scoreDisplay);                         //append the score div to the container
         scoreDivArray.push(scoreDiv);                               //store the two in an array
     }
