@@ -148,11 +148,11 @@ let changeScore = function(playerPiece){
 let displayWinnerOfRound = function(playerPiece){
     let bottomDisplay = document.querySelector(".bottomDisplay");
     let playerName;
-    if(arguments.length === 0){
+    if(arguments.length === 0){                                             //if function is passed no arguments, display draw
         bottomDisplay.innerHTML = "It's a draw! Try again!";
     }
     else{
-        if(playerPiece==="X"){
+        if(playerPiece==="X"){                                              //based on whether function is passed an "X" or "O", display the corresponding player's name as the winner
             playerName = document.querySelector(".player1Name").innerHTML;
         }else{
             playerName = document.querySelector(".player2Name").innerHTML;
@@ -160,3 +160,14 @@ let displayWinnerOfRound = function(playerPiece){
         bottomDisplay.innerHTML = playerName + " wins this round!";
     }
 }
+
+//-----------------------------------------------------------------------------RESET GAME AFTER FIRST ROUND----------------------------------------------------------------------------
+//button to clear the gameboard and continue on with another round while keeping the current scores
+
+//button to clear the scores and start a new game while keeping the same player names
+
+//button to start from scratch where player names need to be entered again (same effect as refresh button)
+// let refreshButton = document.querySelector(".refreshButton");
+// refreshButton.addEventListener("click", function(){
+//     location.reload();              //reloads current document, like clicking the refresh button
+// })
