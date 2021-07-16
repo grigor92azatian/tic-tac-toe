@@ -45,6 +45,17 @@ body{
 .topBanner{
     font-size: 40px;
 }
+.buttonSection{
+    border: 2px solid black;
+    height: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/* .buttonSection button{
+    font-size: 20px;
+} */
 .bottomBanner h2{
     font-style: italic;
     font-weight: lighter;
@@ -65,8 +76,12 @@ form input{
     font-size: 30px;
     text-align: center;
 }
-.playButton{
+/* .playButton{
     height: 50px;
     width: 120px;
     font-size: 40px;
+} */
+button{
+    font-size: 35px;
+    padding: 5px;
 }
