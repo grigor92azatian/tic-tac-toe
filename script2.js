@@ -138,6 +138,12 @@ let addButtons = function(){
         newRoundButton.innerText = "New Round";
     let clearScoresButton = document.createElement("button");
         clearScoresButton.innerText = "Clear Scores";
+    let player1Score = document.querySelector(".player1score");
+    let player2Score = document.querySelector(".player2score");
+        clearScoresButton.addEventListener("click",function(){
+            player1Score.innerHTML = 0;
+            player2Score.innerHTML = 0;
+        })
     let buttonSection = document.querySelector(".buttonSection");
 
     buttonSection.appendChild(newRoundButton);
