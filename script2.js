@@ -125,11 +125,23 @@ let addScoreDisplayArea = function(){       //this will add a seperate div that 
     playerSection[1].appendChild(scoreDivArray[1]);                 //append them to their respective containers
 }
 
+let addButtons = function(){
+    let newRoundButton = document.createElement("button");
+        newRoundButton.innerText = "New Round";
+    let clearScoresButton = document.createElement("button");
+        clearScoresButton.innerText = "Clear Scores";
+    let buttonSection = document.querySelector(".buttonSection");
+
+    buttonSection.appendChild(newRoundButton);
+    buttonSection.appendChild(clearScoresButton);
+}
+
 let playButton = document.querySelector(".playButton");
 playButton.addEventListener("click", function(){
     gameBoardModule();
     displayPlayerNames();
     addScoreDisplayArea();    
+    addButtons();
 });
 
 //------------------------------------------------------------------------------GAME PLAY (round to round changes to score as one wins)-------------------------------------------
@@ -163,11 +175,17 @@ let displayWinnerOfRound = function(playerPiece){
 
 //-----------------------------------------------------------------------------RESET GAME AFTER FIRST ROUND----------------------------------------------------------------------------
 //button to clear the gameboard and continue on with another round while keeping the current scores
-
+let clearGameBoard = function(){
+    gameBoardArray.forEach(box => {
+        box.innerHTML = "";
+    });
+    xOrO = 1;
+    totalNumOfMoves = 0;
+}
 //button to clear the scores and start a new game while keeping the same player names
 
 //button to start from scratch where player names need to be entered again (same effect as refresh button)
-// let refreshButton = document.querySelector(".refreshButton");
-// refreshButton.addEventListener("click", function(){
-//     location.reload();              //reloads current document, like clicking the refresh button
-// })
+let refreshButton = document.querySelector(".clearAllButton");
+refreshButton.addEventListener("click", function(){
+    location.reload();              //reloads current document, like clicking the refresh button
+})
