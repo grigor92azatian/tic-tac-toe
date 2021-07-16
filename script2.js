@@ -24,18 +24,18 @@ let gameBoardModule = function(){
                 tile.style.borderRight = "2px solid black";
             }                
             tile.addEventListener("click", function(){                                                                          //add click event listener to each div
-                if(tile.innerHTML === ""){    
-                    if(xOrO%2===0){
-                        tile.innerHTML = "O";
-                    }else{
-                        tile.innerHTML = "X";
+                    if(tile.innerHTML === ""){    
+                        if(xOrO%2===0){
+                            tile.innerHTML = "O";
+                        }else{
+                            tile.innerHTML = "X";
+                        }
+                        xOrO++;
                     }
-                    xOrO++;
-                }
-                totalNumOfMoves++;                                                                                              //each click will increase this by 1, once it reaches 5, its time to start checking if the game has been won
-                if(totalNumOfMoves>=5){
-                    checkGame();    
-                }
+                    totalNumOfMoves++;                                                                                              //each click will increase this by 1, once it reaches 5, its time to start checking if the game has been won
+                    if(totalNumOfMoves>=5){
+                        checkGame();    
+                    }
             });
             gameBoardArray.push(tile);                                                                                          //push each div onto array for storage
             gameBoardContainer.appendChild(tile);                                                                               //append all 9 divs to gameBoard Container hardcoded into html
@@ -91,13 +91,7 @@ let gameBoardModule = function(){
             displayWinnerOfRound();
         }
     }
-    let clearGameBoard = function(){
-        gameBoardArray.forEach(box => {
-            box.innerHTML = "";
-        });
-        xOrO = 1;
-        totalNumOfMoves = 0;
-    }
+
 
 };
 
@@ -136,6 +130,14 @@ let addScoreDisplayArea = function(){       //this will add a seperate div that 
 let addButtons = function(){
     let newRoundButton = document.createElement("button");
         newRoundButton.innerText = "New Round";
+        newRoundButton.setAttribute("class", "newRoundButton");
+    let clearGameBoard = function(){
+        for(let i=0;i<9;i++){
+            let tileToClear = document.querySelector(".box"+i);
+            tileToClear.innerHTML = "";
+        }
+    }
+    newRoundButton.addEventListener("click", clearGameBoard);
     let clearScoresButton = document.createElement("button");
         clearScoresButton.innerText = "Clear Scores";
     let player1Score = document.querySelector(".player1score");
