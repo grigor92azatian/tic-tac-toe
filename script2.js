@@ -1,13 +1,20 @@
-let gameBoardModule = function(){
+let gameBoardModule = (function(){
     let gameBoardArray = [];                                            //will store our 9 game board tiles
     let gameBoardContainer = document.querySelector(".gameBoard");   //this points to our gameBoard container hardcoded in the html
-        gameBoardContainer.innerHTML = "";
-        gameBoardContainer.style.cssText = "flex-wrap: wrap; justify-content: flex-start; align-items: start;"
     let xOrO = 1;                                                   //alternates X and O on gameboard clicks
     let totalNumOfMoves = 0;                                        //this keeps track of how many moves have been made by both X and O together, once this number hits 5
                                                                     //its time to check if there are any winning combos
-    
-        for(let i=0;i<9;i++){                                              
+
+    let createGameBoard = function(){      //takes an array of tiles and a boardContainer and appends all elements to container
+        gameBoardContainer.innerHTML = "";
+        gameBoardContainer.style.cssText = "flex-wrap: wrap; justify-content: flex-start; align-items: start;"
+        for(let i=0;i<gameBoardArray.length;i++){
+            gameBoardContainer.appendChild(gameBoardArray[i]);
+        }
+    }
+
+    let fillTilesArray = function(numOfTiles){
+        for(let i=0;i<numOfTiles;i++){                                              
             let tile = document.createElement("div");                                                                           //create new div element
             tile.setAttribute("class", "box"+i);                                                                                //gives each div a unique class name
             tile.style.cssText = "font-size: 170px; text-align: center; width: 200px; height: 200px;";                          //styles each div
@@ -23,77 +30,114 @@ let gameBoardModule = function(){
             if(i==0||i==1||i==3||i==4||i==6||i==7){
                 tile.style.borderRight = "2px solid black";
             }                
-            tile.addEventListener("click", function(){                                                                          //add click event listener to each div
-                    if(tile.innerHTML === ""){    
-                        if(xOrO%2===0){
-                            tile.innerHTML = "O";
-                        }else{
-                            tile.innerHTML = "X";
-                        }
-                        xOrO++;
-                    }
-                    totalNumOfMoves++;                                                                                              //each click will increase this by 1, once it reaches 5, its time to start checking if the game has been won
-                    if(totalNumOfMoves>=5){
-                        checkGame();    
-                    }
-            });
-            gameBoardArray.push(tile);                                                                                          //push each div onto array for storage
-            gameBoardContainer.appendChild(tile);                                                                               //append all 9 divs to gameBoard Container hardcoded into html
-        }        
+            gameBoardArray.push(tile);                                                                                          //push each div onto array for storage                                                                             //append all 9 divs to gameBoard Container hardcoded into html
+        }
+    }
+
+    let tileClickEvent = function(){
+        if(this.innerHTML === ""){    
+            if(xOrO%2===0){
+                this.innerHTML = "O";
+            }else{
+                this.innerHTML = "X";
+            }
+            xOrO++;
+        }
+        totalNumOfMoves++;                                                                                              //each click will increase this by 1, once it reaches 5, its time to start checking if the game has been won
+        if(totalNumOfMoves>=5){
+            checkGame();    
+        }
+    }
+    let addEventListenersToTiles = function(){
+        gameBoardArray.forEach(tile => {
+            tile.addEventListener("click", tileClickEvent);            
+        });
+    }
+
+    let removeEventListenersFromTiles = function(){
+        gameBoardArray.forEach(tile => {
+            tile.removeEventListener("click", tileClickEvent);
+        });
+    }
+
+    let clearGameBoard = function(){
+        gameBoardArray.forEach(tile => {
+            tile.innerHTML = "";
+            tile.style.color = "black";
+        });
+        xOrO = 1;
+        totalNumOfMoves = 0;
+    }
+
+    let checkGame = function(){                                 //this function checks if anybody has won
+        if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[1].innerHTML==="X"&&gameBoardArray[2].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[1].innerHTML==="O"&&gameBoardArray[2].innerHTML==="O")){
+            changeToRed(gameBoardArray[0], gameBoardArray[1], gameBoardArray[2]);
+            changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[3].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X")||(gameBoardArray[3].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O")){
+            changeToRed(gameBoardArray[3], gameBoardArray[4], gameBoardArray[5]);
+            changeScore(gameBoardArray[3].innerHTML);
+            displayWinnerOfRound(gameBoardArray[3].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[6].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[6].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
+            changeToRed(gameBoardArray[6], gameBoardArray[7], gameBoardArray[8]);
+            changeScore(gameBoardArray[6].innerHTML);
+            displayWinnerOfRound(gameBoardArray[6].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[3].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[3].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
+            changeToRed(gameBoardArray[0], gameBoardArray[3], gameBoardArray[6]);
+            changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[1].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X")||(gameBoardArray[1].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O")){
+            changeToRed(gameBoardArray[1], gameBoardArray[4], gameBoardArray[7]);
+            changeScore(gameBoardArray[1].innerHTML);
+            displayWinnerOfRound(gameBoardArray[1].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
+            changeToRed(gameBoardArray[2], gameBoardArray[5], gameBoardArray[8]);
+            changeScore(gameBoardArray[2].innerHTML);
+            displayWinnerOfRound(gameBoardArray[2].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
+            changeToRed(gameBoardArray[0], gameBoardArray[4], gameBoardArray[8]);
+            changeScore(gameBoardArray[0].innerHTML);
+            displayWinnerOfRound(gameBoardArray[0].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
+            changeToRed(gameBoardArray[2], gameBoardArray[4], gameBoardArray[6]);
+            changeScore(gameBoardArray[2].innerHTML);
+            displayWinnerOfRound(gameBoardArray[2].innerHTML);
+            removeEventListenersFromTiles();
+        }
+        else if(totalNumOfMoves===9){
+            displayWinnerOfRound();
+            removeEventListenersFromTiles();
+        }
+    }
 
     let changeToRed = function(tile1,tile2,tile3){              //use this function to change the winning 3 tiles into red font
         tile1.style.color = "red";
         tile2.style.color = "red";
         tile3.style.color = "red";
     }
-    let checkGame = function(){                                 //this function checks if anybody has won
-        if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[1].innerHTML==="X"&&gameBoardArray[2].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[1].innerHTML==="O"&&gameBoardArray[2].innerHTML==="O")){
-            changeToRed(gameBoardArray[0], gameBoardArray[1], gameBoardArray[2]);
-            changeScore(gameBoardArray[0].innerHTML);
-            displayWinnerOfRound(gameBoardArray[0].innerHTML);
-        }
-        else if((gameBoardArray[3].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X")||(gameBoardArray[3].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O")){
-            changeToRed(gameBoardArray[3], gameBoardArray[4], gameBoardArray[5]);
-            changeScore(gameBoardArray[3].innerHTML);
-            displayWinnerOfRound(gameBoardArray[3].innerHTML);
-        }
-        else if((gameBoardArray[6].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[6].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
-            changeToRed(gameBoardArray[6], gameBoardArray[7], gameBoardArray[8]);
-            changeScore(gameBoardArray[6].innerHTML);
-            displayWinnerOfRound(gameBoardArray[6].innerHTML);
-        }
-        else if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[3].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[3].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
-            changeToRed(gameBoardArray[0], gameBoardArray[3], gameBoardArray[6]);
-            changeScore(gameBoardArray[0].innerHTML);
-            displayWinnerOfRound(gameBoardArray[0].innerHTML);
-        }
-        else if((gameBoardArray[1].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[7].innerHTML==="X")||(gameBoardArray[1].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[7].innerHTML==="O")){
-            changeToRed(gameBoardArray[1], gameBoardArray[4], gameBoardArray[7]);
-            changeScore(gameBoardArray[1].innerHTML);
-            displayWinnerOfRound(gameBoardArray[1].innerHTML);
-        }
-        else if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[5].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[5].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
-            changeToRed(gameBoardArray[2], gameBoardArray[5], gameBoardArray[8]);
-            changeScore(gameBoardArray[2].innerHTML);
-            displayWinnerOfRound(gameBoardArray[2].innerHTML);
-        }
-        else if((gameBoardArray[0].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[8].innerHTML==="X")||(gameBoardArray[0].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[8].innerHTML==="O")){
-            changeToRed(gameBoardArray[0], gameBoardArray[4], gameBoardArray[8]);
-            changeScore(gameBoardArray[0].innerHTML);
-            displayWinnerOfRound(gameBoardArray[0].innerHTML);
-        }
-        else if((gameBoardArray[2].innerHTML==="X"&&gameBoardArray[4].innerHTML==="X"&&gameBoardArray[6].innerHTML==="X")||(gameBoardArray[2].innerHTML==="O"&&gameBoardArray[4].innerHTML==="O"&&gameBoardArray[6].innerHTML==="O")){
-            changeToRed(gameBoardArray[2], gameBoardArray[4], gameBoardArray[6]);
-            changeScore(gameBoardArray[2].innerHTML);
-            displayWinnerOfRound(gameBoardArray[2].innerHTML);
-        }
-        else if(totalNumOfMoves===9){
-            displayWinnerOfRound();
-        }
-    }
 
-
-};
+    return {
+        createGameBoard,
+        fillTilesArray,
+        addEventListenersToTiles,
+        clearGameBoard,
+        removeEventListenersFromTiles
+    }       
+})();
 
 
 //-----------------------------------------------------------------GAME SETUP (players enter names and click the play button)----------------------------------------------------
@@ -128,17 +172,16 @@ let addScoreDisplayArea = function(){       //this will add a seperate div that 
 }
 
 let addButtons = function(){
+    let bottomDisplay = document.querySelector(".bottomDisplay");
     //new round button
     let newRoundButton = document.createElement("button");
         newRoundButton.innerText = "New Round";
         newRoundButton.setAttribute("class", "newRoundButton");
-    let clearGameBoard = function(){
-        for(let i=0;i<9;i++){
-            let tileToClear = document.querySelector(".box"+i);
-            tileToClear.innerHTML = "";
-        }
-    }
-    newRoundButton.addEventListener("click", clearGameBoard);
+    newRoundButton.addEventListener("click", function(){
+        gameBoardModule.clearGameBoard();
+        bottomDisplay.innerHTML = "X makes the first move!";
+        gameBoardModule.addEventListenersToTiles();
+    });
 
     //clear score button
     let clearScoresButton = document.createElement("button");
@@ -148,7 +191,10 @@ let addButtons = function(){
         clearScoresButton.addEventListener("click",function(){
             player1Score.innerHTML = 0;
             player2Score.innerHTML = 0;
-        })
+            gameBoardModule.clearGameBoard();
+            bottomDisplay.innerHTML = "X makes the first move!";
+            gameBoardModule.addEventListenersToTiles();
+        });
     let buttonSection = document.querySelector(".buttonSection");
 
     buttonSection.appendChild(newRoundButton);
@@ -157,7 +203,9 @@ let addButtons = function(){
 
 let playButton = document.querySelector(".playButton");
 playButton.addEventListener("click", function(){
-    gameBoardModule();
+    gameBoardModule.fillTilesArray(9);
+    gameBoardModule.addEventListenersToTiles();
+    gameBoardModule.createGameBoard();
     displayPlayerNames();
     addScoreDisplayArea();    
     addButtons();
@@ -178,6 +226,7 @@ let changeScore = function(playerPiece){
 
 let displayWinnerOfRound = function(playerPiece){
     let bottomDisplay = document.querySelector(".bottomDisplay");
+    bottomDisplay.innerHTML = "";
     let playerName;
     if(arguments.length === 0){                                             //if function is passed no arguments, display draw
         bottomDisplay.innerHTML = "It's a draw! Try again!";
@@ -201,4 +250,5 @@ let displayWinnerOfRound = function(playerPiece){
 let refreshButton = document.querySelector(".clearAllButton");
 refreshButton.addEventListener("click", function(){
     location.reload();              //reloads current document, like clicking the refresh button
-})
+});
+
