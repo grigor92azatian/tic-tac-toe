@@ -128,6 +128,7 @@ let addScoreDisplayArea = function(){       //this will add a seperate div that 
 }
 
 let addButtons = function(){
+    //new round button
     let newRoundButton = document.createElement("button");
         newRoundButton.innerText = "New Round";
         newRoundButton.setAttribute("class", "newRoundButton");
@@ -138,6 +139,8 @@ let addButtons = function(){
         }
     }
     newRoundButton.addEventListener("click", clearGameBoard);
+
+    //clear score button
     let clearScoresButton = document.createElement("button");
         clearScoresButton.innerText = "Clear Scores";
     let player1Score = document.querySelector(".player1score");
