@@ -17,7 +17,7 @@ let gameBoardModule = (function(){
         for(let i=0;i<numOfTiles;i++){                                              
             let tile = document.createElement("div");                                                                           //create new div element
             tile.setAttribute("class", "box"+i);                                                                                //gives each div a unique class name
-            tile.style.cssText = "font-size: 170px; text-align: center; width: 200px; height: 200px;";                          //styles each div
+            tile.style.cssText = "font-size: 90px; text-align: center; width: 100px; height: 100px;";                          //styles each div
             if(i>=3&&i<=8){                                                                                               //give tiles their unique borders
                 tile.style.borderTop = "2px solid black";
             }
