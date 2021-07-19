@@ -74,6 +74,6 @@ form input{
     text-align: center;
 }
 button{
-    font-size: 35px;
+    font-size: auto;
     padding: 5px;
 }
