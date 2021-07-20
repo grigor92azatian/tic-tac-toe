@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    /* border: 1px solid black; */
 }
 
 body{
@@ -13,9 +14,10 @@ body{
     justify-content: space-around;
     align-items: center;
 }
+
 .mainSection{
     height: 70%;
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -30,30 +32,27 @@ body{
 }
 .player{
     height: 75%;
-    width: 25%;
-    /* border: 2px solid black; */
+    width: 20%;
     display: flex;
     flex-direction:column;
     justify-content: space-around;
 }
-.topBanner, .bottomBanner{
-    width: 90%;
+.topBanner, .bottomDisplay{
+    width: 80%;
     height: 10%;
-    /* border: 2px solid black; */
     text-align: center;
 }
 .topBanner{
-    font-size: 40px;
+    font-size: 5vw;
 }
 .buttonSection{
-    /* border: 2px solid black; */
     height: 10%;
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.bottomBanner h2{
+.bottomDisplay{
     font-style: italic;
     font-weight: lighter;
     font-size: 30px;
@@ -74,6 +73,7 @@ form input{
     text-align: center;
 }
 button{
-    font-size: auto;
-    padding: 5px;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 10px;
 }
